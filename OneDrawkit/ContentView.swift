@@ -37,6 +37,12 @@ struct ContentView: View {
             }) {
               Image(systemName: "lasso")
             }
+            Button(action: {
+              drawView.shouldFillPath = true
+              drawView.brush = Brush()
+            }) {
+              Image(systemName: "rectangle")
+            }
           }
           VStack {
             SwiftyDrawViewRepresentable(drawView: drawView)
