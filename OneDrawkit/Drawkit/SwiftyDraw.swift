@@ -56,6 +56,8 @@ import SwiftUI
 @available(iOS 9.1, *)
 open class SwiftyDrawView: UIView {
 
+  @AppStorage("isDrawing") var isDrawing: Bool = false
+
     /// Current brush being used for drawing
     public var brush: Brush = .default {
         didSet {
@@ -146,11 +148,7 @@ open class SwiftyDrawView: UIView {
 
       for item in drawItems {
 
-          context.setLineCap(.round)
-          context.setLineJoin(.round)
-
-          let width = item.brush.width
-
+        let width = item.brush.width
           print("width: \(width)")
 
           context.setLineWidth(width)
@@ -166,13 +164,16 @@ open class SwiftyDrawView: UIView {
             context.setStrokeColor(item.brush.color.uiColor.cgColor)
             context.addPath(item.path)
             context.strokePath()
+
           }
+        context.restoreGState()
 
       }
     }
 
     /// touchesBegan implementation to capture strokes
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+      isDrawing = true
         guard isEnabled, let touch = touches.first else { return }
         if #available(iOS 9.1, *) {
             guard allowedTouchTypes.flatMap({ $0.uiTouchTypes }).contains(touch.type) else { return }
@@ -190,6 +191,7 @@ open class SwiftyDrawView: UIView {
 
     /// touchesMoves implementation to capture strokes
     override open func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+      isDrawing = true
         guard isEnabled, let touch = touches.first else { return }
         if #available(iOS 9.1, *) {
             guard allowedTouchTypes.flatMap({ $0.uiTouchTypes }).contains(touch.type) else { return }
@@ -243,6 +245,7 @@ open class SwiftyDrawView: UIView {
 
     /// touchedEnded implementation to capture strokes
     override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+      isDrawing = false
         guard isEnabled, let touch = touches.first else { return }
         delegate?.swiftyDraw(didFinishDrawingIn: self, using: touch)
     }
@@ -304,9 +307,11 @@ open class SwiftyDrawView: UIView {
         currentPoint = touch.location(in: view)
       
       if let currentStroke = drawItems.last {
-        let newPoint = OBStrokePoint(location: currentPoint, size: CGSize(width: brush.width, height: brush.width), opactiy: brush.opacity, azimuth: 1, altitude: 1)
+        let newPoint = OBStrokePoint(location: currentPoint, size: CGSize(width: brush.width * touch.force, height: brush.width), opactiy: brush.opacity, azimuth: 1, altitude: 1)
         let endIndex = drawItems.endIndex
-        drawItems[endIndex].points.append(newPoint)
+        if drawItems.isIndexValid(endIndex) {
+          drawItems[endIndex].points.append(newPoint)
+        }
       }
 
     }
@@ -447,6 +452,7 @@ extension OBStroke: Codable {
 }
 struct SwiftyDrawViewRepresentable: UIViewRepresentable {
     typealias UIViewType = SwiftyDrawView
+
 
     var drawView = SwiftyDrawView()
 

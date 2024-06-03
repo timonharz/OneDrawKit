@@ -12,6 +12,8 @@ import UIKit
 struct ZoomableScrollView<Content: View>: UIViewRepresentable {
     var content: () -> Content
 
+  @AppStorage("isDrawing") private var isDrawing: Bool = false
+
     func makeUIView(context: Context) -> UIScrollView {
         let scrollView = UIScrollView()
         scrollView.delegate = context.coordinator
@@ -31,6 +33,15 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
 
     func updateUIView(_ uiView: UIScrollView, context: Context) {
         // Update the hosted view here if needed
+      print("Is drawing: \(isDrawing)")
+      if isDrawing {
+        uiView.isScrollEnabled = false
+        uiView.bouncesZoom = false
+
+      } else {
+        uiView.isScrollEnabled = true
+        uiView.bouncesZoom = true
+      }
     }
 
     func makeCoordinator() -> Coordinator {

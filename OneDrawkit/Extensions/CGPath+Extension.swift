@@ -34,3 +34,24 @@ extension CGPath {
         return points
     }
 }
+extension Array where Element == CGPoint {
+    func toCGPath() -> CGPath? {
+        let path = CGMutablePath()
+
+        // Check if there are at least two points to form a path
+        guard self.count > 1 else {
+            // If not enough points, return nil or an empty path
+            return nil
+        }
+
+        // Move to the first point
+        path.move(to: self[0])
+
+        // Add lines to each subsequent point
+        for point in self.dropFirst() {
+            path.addLine(to: point)
+        }
+
+        return path
+    }
+}

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
   let drawView = SwiftyDrawView()
+
+  @State private var isDrawing: Bool = false
     var body: some View {
       ZStack {
         VStack {
@@ -45,11 +47,11 @@ struct ContentView: View {
               Image(systemName: "rectangle")
             }
           }
+          ZoomableScrollView {
             VStack {
               SwiftyDrawViewRepresentable(drawView: drawView)
             }.frame(width: 595, height: 842).border(.gray)
-
-
+          }
         }
       }
     }
