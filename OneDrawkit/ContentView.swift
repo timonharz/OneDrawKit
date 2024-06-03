@@ -12,6 +12,7 @@ struct ContentView: View {
     var body: some View {
       ZStack {
         VStack {
+
           HStack {
             Button(action: {
               drawView.brush = .default
@@ -44,9 +45,9 @@ struct ContentView: View {
               Image(systemName: "rectangle")
             }
           }
-          VStack {
-            SwiftyDrawViewRepresentable(drawView: drawView)
-          }.frame(width: 595, height: 842).border(.gray)
+            VStack {
+              SwiftyDrawViewRepresentable(drawView: drawView)
+            }.frame(width: 595, height: 842).border(.gray)
 
 
         }

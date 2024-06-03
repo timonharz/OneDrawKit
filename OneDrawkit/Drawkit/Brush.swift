@@ -18,18 +18,21 @@ public class Brush: Codable {
     public var width: CGFloat
     public var opacity: CGFloat
 
+  public var randomSeed: CGFloat
+
     public var adjustedWidthFactor: CGFloat = 1
 
     /// Allows for actually erasing content, by setting it to `.clear`. Default is `.normal`
     public var blendMode: BlendMode = .normal
 
-    public init(color: UIColor = .black, width: CGFloat = 3, opacity: CGFloat = 1, adjustedWidthFactor: CGFloat = 1, blendMode: BlendMode = .normal) {
+  public init(color: UIColor = .black, width: CGFloat = 3, opacity: CGFloat = 1, adjustedWidthFactor: CGFloat = 1, randomSeed: CGFloat = 1, blendMode: BlendMode = .normal) {
         self.color = Color(color)
         self._originalWidth = width
         self.width = width
         self.opacity = opacity
         self.adjustedWidthFactor = adjustedWidthFactor
         self.blendMode = blendMode
+      self.randomSeed = randomSeed
     }
 
     private func adjustedWidth(for touch: UITouch) -> CGFloat {
@@ -44,7 +47,7 @@ public class Brush: Codable {
     // MARK: - Static brushes
 
     public static var `default`: Brush {
-        return Brush(color: .black, width: 3, opacity: 1)
+        return Brush(color: .black, width: 3, opacity: 1, randomSeed: 5)
     }
 
     public static var thin: Brush {

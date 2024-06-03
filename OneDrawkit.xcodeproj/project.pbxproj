@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F53DB0122C0E1914008487B9 /* OBStroke.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53DB0112C0E1914008487B9 /* OBStroke.swift */; };
+		F546572B2C0E12C1009BEC67 /* CGPath+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F546572A2C0E12C1009BEC67 /* CGPath+Extension.swift */; };
 		F55463D32BEC25AB00AF2247 /* OneDrawkitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55463D22BEC25AB00AF2247 /* OneDrawkitApp.swift */; };
 		F55463D52BEC25AB00AF2247 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55463D42BEC25AB00AF2247 /* ContentView.swift */; };
 		F55463D72BEC25AC00AF2247 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F55463D62BEC25AC00AF2247 /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F53DB0112C0E1914008487B9 /* OBStroke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBStroke.swift; sourceTree = "<group>"; };
+		F546572A2C0E12C1009BEC67 /* CGPath+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPath+Extension.swift"; sourceTree = "<group>"; };
 		F55463CF2BEC25AB00AF2247 /* OneDrawkit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OneDrawkit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F55463D22BEC25AB00AF2247 /* OneDrawkitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneDrawkitApp.swift; sourceTree = "<group>"; };
 		F55463D42BEC25AB00AF2247 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 				F55463FE2BEC25D700AF2247 /* SwiftyDraw.swift */,
 				F55464002BEC25E200AF2247 /* Color.swift */,
 				F55464022BEC25F300AF2247 /* Brush.swift */,
+				F53DB0112C0E1914008487B9 /* OBStroke.swift */,
 			);
 			path = Drawkit;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 		F55464052BEC266900AF2247 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				F546572A2C0E12C1009BEC67 /* CGPath+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -297,9 +303,11 @@
 			files = (
 				F55464072BEC268000AF2247 /* Zoomable.swift in Sources */,
 				F55463FF2BEC25D700AF2247 /* SwiftyDraw.swift in Sources */,
+				F53DB0122C0E1914008487B9 /* OBStroke.swift in Sources */,
 				F55464012BEC25E200AF2247 /* Color.swift in Sources */,
 				F55464032BEC25F300AF2247 /* Brush.swift in Sources */,
 				F55463D52BEC25AB00AF2247 /* ContentView.swift in Sources */,
+				F546572B2C0E12C1009BEC67 /* CGPath+Extension.swift in Sources */,
 				F55463D32BEC25AB00AF2247 /* OneDrawkitApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,7 +482,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.1;
@@ -512,7 +520,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.1;

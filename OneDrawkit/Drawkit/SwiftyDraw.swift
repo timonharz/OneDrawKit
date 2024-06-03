@@ -102,8 +102,8 @@ open class SwiftyDrawView: UIView {
 
     public lazy var allowedTouchTypes: [TouchType] = [.finger, .pencil]
 
-    public  var drawItems: [DrawItem] = []
-    public  var drawingHistory: [DrawItem] = []
+    public  var drawItems: [OBStroke] = []
+    public  var drawingHistory: [OBStroke] = []
     public  var firstPoint: CGPoint = .zero      // created this variable
     public  var currentPoint: CGPoint = .zero     // made public
     private var previousPoint: CGPoint = .zero
@@ -117,20 +117,6 @@ open class SwiftyDrawView: UIView {
     private var previousBrush: Brush = .default
 
     public enum ShapeType { case rectangle, roundedRectangle, ellipse }
-
-    public struct DrawItem {
-        public var path: CGMutablePath
-        public var brush: Brush
-        public var isFillPath: Bool
-      public var forces: [CGFloat]
-
-      public init(path: CGMutablePath, brush: Brush, isFillPath: Bool, forces: [CGFloat]) {
-            self.path = path
-            self.brush = brush
-            self.isFillPath = isFillPath
-        self.forces = forces
-        }
-    }
 
     /// Public init(frame:) implementation
     override public init(frame: CGRect) {
@@ -159,23 +145,29 @@ open class SwiftyDrawView: UIView {
         guard let context: CGContext = UIGraphicsGetCurrentContext() else { return }
 
       for item in drawItems {
-        context.setLineCap(.round)
-        context.setLineJoin(.round)
 
-        context.setLineWidth(item.brush.width)
-        context.setBlendMode(item.brush.blendMode.cgBlendMode)
-        context.setAlpha(item.brush.opacity)
-        if (item.isFillPath)
-        {
-          context.setFillColor(item.brush.color.uiColor.cgColor)
-          context.addPath(item.path)
-          context.fillPath()
-        }
-        else {
-          context.setStrokeColor(item.brush.color.uiColor.cgColor)
-          context.addPath(item.path)
-          context.strokePath()
-        }
+          context.setLineCap(.round)
+          context.setLineJoin(.round)
+
+          let width = item.brush.width
+
+          print("width: \(width)")
+
+          context.setLineWidth(width)
+          context.setBlendMode(item.brush.blendMode.cgBlendMode)
+          context.setAlpha(item.brush.opacity)
+          if (item.isFillPath)
+          {
+            context.setFillColor(item.brush.color.uiColor.cgColor)
+            context.addPath(item.path)
+            context.fillPath()
+          }
+          else {
+            context.setStrokeColor(item.brush.color.uiColor.cgColor)
+            context.addPath(item.path)
+            context.strokePath()
+          }
+
       }
     }
 
@@ -191,7 +183,7 @@ open class SwiftyDrawView: UIView {
         setTouchPoints(touch, view: self)
         firstPoint = touch.location(in: self)
       let forces = touches.map { $0.force }
-        let newLine = DrawItem(path: CGMutablePath(),
+      let newLine = OBStroke(path: CGMutablePath(), points: [],
                                brush: Brush(color: brush.color.uiColor, width: brush.width, opacity: brush.opacity, blendMode: brush.blendMode), isFillPath: drawMode != .draw && drawMode != .line ? shouldFillPath : false, forces: forces)
         addLine(newLine)
     }
@@ -212,7 +204,7 @@ open class SwiftyDrawView: UIView {
         case .line:
             drawItems.removeLast()
             setNeedsDisplay()
-            let newLine = DrawItem(path: CGMutablePath(),
+          let newLine = OBStroke(path: CGMutablePath(), points: [],
                                    brush: Brush(color: brush.color.uiColor, width: brush.width, opacity: brush.opacity, blendMode: brush.blendMode), isFillPath: false, forces: forces)
             newLine.path.addPath(createNewStraightPath())
             addLine(newLine)
@@ -221,12 +213,14 @@ open class SwiftyDrawView: UIView {
             let newPath = createNewPath()
             if let currentPath = drawItems.last {
                 currentPath.path.addPath(newPath)
+
+             // currentPath.points.append(OBStroke)
             }
             break
         case .ellipse:
             drawItems.removeLast()
             setNeedsDisplay()
-            let newLine = DrawItem(path: CGMutablePath(),
+          let newLine = OBStroke(path: CGMutablePath(), points: [],
                                    brush: Brush(color: brush.color.uiColor, width: brush.width, opacity: brush.opacity, blendMode: brush.blendMode), isFillPath: shouldFillPath, forces: forces)
             newLine.path.addPath(createNewShape(type: .ellipse))
             addLine(newLine)
@@ -234,7 +228,7 @@ open class SwiftyDrawView: UIView {
         case .rect:
             drawItems.removeLast()
             setNeedsDisplay()
-            let newLine = DrawItem(path: CGMutablePath(),
+          let newLine = OBStroke(path: CGMutablePath(), points: [],
                                    brush: Brush(color: brush.color.uiColor, width: brush.width, opacity: brush.opacity, blendMode: brush.blendMode), isFillPath: shouldFillPath, forces: forces)
             newLine.path.addPath(createNewShape(type: .rectangle))
             addLine(newLine)
@@ -242,7 +236,7 @@ open class SwiftyDrawView: UIView {
         }
     }
 
-    func addLine(_ newLine: DrawItem) {
+    func addLine(_ newLine: OBStroke) {
         drawItems.append(newLine)
         drawingHistory = drawItems // adding a new item should also update history
     }
@@ -260,7 +254,7 @@ open class SwiftyDrawView: UIView {
     }
 
     /// Displays paths passed by replacing all other contents with provided paths
-    public func display(drawItems: [DrawItem]) {
+    public func display(drawItems: [OBStroke]) {
         self.drawItems = drawItems
         drawingHistory = drawItems
         setNeedsDisplay()
@@ -308,6 +302,13 @@ open class SwiftyDrawView: UIView {
         previousPreviousPoint = previousPoint
         previousPoint = touch.previousLocation(in: view)
         currentPoint = touch.location(in: view)
+      
+      if let currentStroke = drawItems.last {
+        let newPoint = OBStrokePoint(location: currentPoint, size: CGSize(width: brush.width, height: brush.width), opactiy: brush.opacity, azimuth: 1, altitude: 1)
+        let endIndex = drawItems.endIndex
+        drawItems[endIndex].points.append(newPoint)
+      }
+
     }
 
     private func createNewPath() -> CGMutablePath {
@@ -405,7 +406,7 @@ extension SwiftyDrawView : UIPencilInteractionDelegate{
     }
 }
 
-extension SwiftyDrawView.DrawItem: Codable {
+extension OBStroke: Codable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -416,6 +417,7 @@ extension SwiftyDrawView.DrawItem: Codable {
         brush = try container.decode(Brush.self, forKey: .brush)
         isFillPath = try container.decode(Bool.self, forKey: .isFillPath)
       forces = try container.decode([CGFloat].self, forKey: .forces)
+      points = try container.decode([OBStrokePoint].self, forKey: .points)
     }
 
     public func encode(to encoder: Encoder) throws {
@@ -432,6 +434,7 @@ extension SwiftyDrawView.DrawItem: Codable {
 
         try container.encode(brush, forKey: .brush)
         try container.encode(isFillPath, forKey: .isFillPath)
+      try container.encode(points, forKey: .points)
     }
 
     enum CodingKeys: String, CodingKey {
@@ -439,6 +442,7 @@ extension SwiftyDrawView.DrawItem: Codable {
         case path
         case isFillPath
       case forces
+      case points
     }
 }
 struct SwiftyDrawViewRepresentable: UIViewRepresentable {
@@ -452,5 +456,11 @@ struct SwiftyDrawViewRepresentable: UIViewRepresentable {
 
     func updateUIView(_ uiView: SwiftyDrawView, context: Context) {
         // Update the view if needed
+    }
+}
+
+extension Collection {
+    func isIndexValid(_ index: Index) -> Bool {
+        return index >= startIndex && index < endIndex
     }
 }

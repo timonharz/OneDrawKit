@@ -47,5 +47,18 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
         func viewForZooming(in scrollView: UIScrollView) -> UIView? {
             return scrollView.subviews.first
         }
+      func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        scaleView(view: scrollView, scale: scrollView.zoomScale)
+      }
+      private func scaleView(view: UIView, scale: CGFloat) {
+
+        view.contentScaleFactor = scale * UIScreen.main.scale
+
+
+        for subview in view.subviews {
+          scaleView(view: subview, scale: scale)
+        }
+      }
+
     }
 }
