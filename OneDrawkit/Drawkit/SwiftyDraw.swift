@@ -151,9 +151,6 @@ open class SwiftyDrawView: UIView {
         let brushType = item.brush.brushType
 
         let width = item.brush.width
-          print("width: \(width)")
-
-        print("Number of stroke points: \(item.points.count)")
 
         guard let cgPath = item.path.copy() else {
           return
@@ -182,28 +179,36 @@ open class SwiftyDrawView: UIView {
           }
         }
         if brushType == .fountainPen {
-          let points = item.pathPoints
+                  let points = item.pathPoints
 
-          for index in points.indices {
-            let path = CGMutablePath()
+                  for index in points.indices {
+                    let path = CGMutablePath()
 
-            let point = points[index]
+                    let point = points[index]
 
-            path.move(to: point)
+                    path.move(to: point)
 
-            if points.isIndexValid(index + 1) {
-              path.addLine(to: points[index + 1])
-            }
-            print("Points: \(item.points)")
-            context.setStrokeColor(item.brush.color.uiColor.cgColor)
-            context.setLineCap(.round)
-            context.setLineJoin(.round)
-            context.addPath(path)
-            context.strokePath()
+                    if points.isIndexValid(index - 1) {
+                      path.addLine(to: points[index - 1])
 
-          }
+                    }
 
-        }
+                    if points.isIndexValid(index - 2) {
+                      path.addLine(to: points[index - 2])
+
+                    }
+
+
+                    context.setStrokeColor(item.brush.color.uiColor.cgColor)
+                    context.setLineCap(.round)
+                    context.setLineJoin(.round)
+                    context.setLineWidth(5)
+                    context.addPath(path)
+                    context.strokePath()
+
+                  }
+
+                }
         context.restoreGState()
 
       }
@@ -258,7 +263,28 @@ open class SwiftyDrawView: UIView {
 
               let points = newPath.points()
 
+              let endIndex = drawItems.endIndex - 1
 
+
+
+
+              if drawItems.isIndexValid(endIndex) {
+
+                let brush = drawItems[endIndex].brush
+
+                let pointBefore = drawItems[endIndex].points.last
+
+
+                let width = brush.width + proximityScore(between: timestamps.first ?? 0, and: pointBefore?.creation ?? 0)
+
+                print("Width: \(width)")
+
+                let strokePoint = OBStrokePoint(location: points.first!, size: CGSize(width: width, height: width), opactiy: 1, azimuth: 1, altitude: 1, creation: timestamps.first!)
+                drawItems[endIndex].points.append(strokePoint)
+
+              } else {
+                print("Invalid index for stroke")
+              }
 
              // currentPath.points.append(OBStroke)
             }
@@ -281,6 +307,19 @@ open class SwiftyDrawView: UIView {
             break
         }
     }
+  private func proximityScore(between firstTimestamp: TimeInterval, and secondTimestamp: TimeInterval) -> Double {
+    // Calculate the time interval between the two timestamps
+    let timeInterval = abs(firstTimestamp - secondTimestamp)
+
+    // Return a score that gets larger as the time interval gets smaller
+    // Here we use an arbitrary scaling factor (e.g., 1.0) to ensure the score is not too small
+    // Adjust the scaling factor as necessary based on your requirements
+    let proximatedScore = 50.0 / (timeInterval + 5.0)
+
+    print("Proximated score: \(proximatedScore)")
+
+    return proximatedScore
+}
 
     func addLine(_ newLine: OBStroke) {
         drawItems.append(newLine)
@@ -357,6 +396,8 @@ open class SwiftyDrawView: UIView {
     private func createNewPath() -> CGMutablePath {
       print("createNewPath()")
         let midPoints = getMidPoints()
+
+
 
         let subPath = createSubPath(midPoints.0, mid2: midPoints.1)
         let newPath = addSubPathToPath(subPath)
