@@ -24,11 +24,12 @@ struct ContentView: View {
             }
             Button(action: {
               drawView.brush = .marker
+
             }) {
               Image(systemName: "highlighter")
             }
             Button(action: {
-              drawView.brush = Brush(adjustedWidthFactor: 1, blendMode: .clear)
+              drawView.brush = Brush(brushType: .eraser, adjustedWidthFactor: 1, blendMode: .clear)
               drawView.brush.width = 25
 
             }) {
@@ -42,16 +43,15 @@ struct ContentView: View {
             }
             Button(action: {
               drawView.shouldFillPath = true
-              drawView.brush = Brush()
+
             }) {
               Image(systemName: "rectangle")
             }
           }
-          ZoomableScrollView {
             VStack {
               SwiftyDrawViewRepresentable(drawView: drawView)
             }.frame(width: 595, height: 842).border(.gray)
-          }
+
         }
       }
     }

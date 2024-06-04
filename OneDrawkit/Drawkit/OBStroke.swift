@@ -38,4 +38,5 @@ public struct OBStrokePoint: Codable {
   public var opactiy: CGFloat
   public var azimuth: CGFloat
   public var altitude: CGFloat
+  public var creation: TimeInterval
 }
