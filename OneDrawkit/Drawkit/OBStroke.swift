@@ -10,6 +10,7 @@ import CoreGraphics
 
 public struct OBStroke {
     public var path: CGMutablePath
+
   public var points: [OBStrokePoint]
     public var brush: Brush
     public var isFillPath: Bool

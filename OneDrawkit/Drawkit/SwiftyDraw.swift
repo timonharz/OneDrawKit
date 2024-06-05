@@ -166,6 +166,8 @@ open class SwiftyDrawView: UIView {
           if (item.isFillPath)
           {
             context.setFillColor(item.brush.color.uiColor.cgColor)
+            context.setLineCap(.round)
+            context.setLineJoin(.round)
             context.addPath(item.path)
             context.fillPath()
           }
@@ -179,40 +181,50 @@ open class SwiftyDrawView: UIView {
           }
         }
         if brushType == .fountainPen {
-                  let points = item.pathPoints
 
-                  for index in points.indices {
-                    let path = CGMutablePath()
+          let path = item.path.copy()
+          let pathPoints = item.path.points()
 
-                    let point = points[index]
+          let forces = item.forces
 
-                    path.move(to: point)
+          if path != nil {
+            let uiBezier = UIBezierPath(cgPath: path!)
 
-                    if points.isIndexValid(index - 1) {
-                      path.addLine(to: points[index - 1])
+            context.setLineWidth(width)
+            context.setBlendMode(item.brush.blendMode.cgBlendMode)
+            context.setAlpha(item.brush.opacity)
+            context.setStrokeColor(item.brush.color.uiColor.cgColor)
 
-                    }
+            for index in pathPoints.indices {
 
-                    if points.isIndexValid(index - 2) {
-                      path.addLine(to: points[index - 2])
+              if pathPoints.isIndexValid(index + 1) {
+                let pathCopy = path?.copy()
+                let currentPoint = pathPoints[index]
+                let nextPoint = pathPoints[index + 1]
 
-                    }
+                let distance = currentPoint.distance(to: nextPoint)
+
+                let width = item.brush.width * max(item.brush.width, min(distance, item.brush.width * 2))
+
+                context.setLineWidth(width)
 
 
-                    context.setStrokeColor(item.brush.color.uiColor.cgColor)
-                    context.setLineCap(.round)
-                    context.setLineJoin(.round)
-                    context.setLineWidth(5)
-                    context.addPath(path)
-                    context.strokePath()
+              }
+            }
 
-                  }
+            context.addPath(uiBezier.cgPath)
+            context.strokePath()
 
-                }
+          }
+
+
+          }
         context.restoreGState()
 
       }
     }
+
+  
 
     /// touchesBegan implementation to capture strokes
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
