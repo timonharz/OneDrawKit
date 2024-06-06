@@ -62,7 +62,7 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
         }
 
         private func scaleView(view: UIView, scale: CGFloat) {
-          print("Scale: \(scale)")
+          
           if scale < 12.5 {
             view.contentScaleFactor = scale * UIScreen.main.scale
             for subview in view.subviews {

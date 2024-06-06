@@ -56,7 +56,7 @@ struct ContentView: View {
       }
     }
   private func setupCanvas() {
-    drawView.allowedTouchTypes = [.finger, .pencil]
+    drawView.allowedTouchTypes = [.pencil]
   }
 }
 

@@ -181,44 +181,41 @@ open class SwiftyDrawView: UIView {
           }
         }
         if brushType == .fountainPen {
-
-          let path = item.path.copy()
+          guard let path = item.path.copy() else {
+                return
+            }
           let pathPoints = item.path.points()
 
-          let forces = item.forces
+            let forces = item.forces
 
-          if path != nil {
-            let uiBezier = UIBezierPath(cgPath: path!)
 
-            context.setLineWidth(width)
+
             context.setBlendMode(item.brush.blendMode.cgBlendMode)
             context.setAlpha(item.brush.opacity)
             context.setStrokeColor(item.brush.color.uiColor.cgColor)
 
-            for index in pathPoints.indices {
-
-              if pathPoints.isIndexValid(index + 1) {
-                let pathCopy = path?.copy()
+            for index in 0..<(pathPoints.count - 1) {
                 let currentPoint = pathPoints[index]
+
                 let nextPoint = pathPoints[index + 1]
+                let distance = currentPoint.distance(to: nextPoint) * 0.5
 
-                let distance = currentPoint.distance(to: nextPoint)
-
-                let width = item.brush.width * max(item.brush.width, min(distance, item.brush.width * 2))
+                let width = item.brush.width * (max(item.brush.width / 1.6, min(distance, item.brush.width * 2)))
 
                 context.setLineWidth(width)
+                context.setLineJoin(.miter)
+                context.setLineCap(.round)
 
+                let path = CGMutablePath()
+                path.move(to: currentPoint)
+                path.addLine(to: nextPoint)
 
-              }
+                context.addPath(path)
+                context.strokePath()
+                self.setNeedsDisplay()
+
             }
-
-            context.addPath(uiBezier.cgPath)
-            context.strokePath()
-
-          }
-
-
-          }
+        }
         context.restoreGState()
 
       }
@@ -280,7 +277,7 @@ open class SwiftyDrawView: UIView {
 
 
 
-              if drawItems.isIndexValid(endIndex) {
+          /*    if drawItems.isIndexValid(endIndex) {
 
                 let brush = drawItems[endIndex].brush
 
@@ -296,7 +293,7 @@ open class SwiftyDrawView: UIView {
 
               } else {
                 print("Invalid index for stroke")
-              }
+              }*/
 
              // currentPath.points.append(OBStroke)
             }
@@ -397,7 +394,6 @@ open class SwiftyDrawView: UIView {
     }
 
     private func updateTouchPoints(for touch: UITouch,in view: UIView) {
-      print("updateTouchPoints(:_, :_) called")
         previousPreviousPoint = previousPoint
         previousPoint = touch.previousLocation(in: view)
         currentPoint = touch.location(in: view)
@@ -406,7 +402,6 @@ open class SwiftyDrawView: UIView {
     }
 
     private func createNewPath() -> CGMutablePath {
-      print("createNewPath()")
         let midPoints = getMidPoints()
 
 
