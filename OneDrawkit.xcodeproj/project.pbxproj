@@ -37,6 +37,7 @@
 		F5755AF92C1347CC006A311B /* EraserTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755AF82C1347CC006A311B /* EraserTool.swift */; };
 		F5755AFB2C1347DC006A311B /* LassoTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755AFA2C1347DC006A311B /* LassoTool.swift */; };
 		F5755AFD2C134825006A311B /* CanvasViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755AFC2C134825006A311B /* CanvasViewRepresentable.swift */; };
+		F5755AFF2C13489D006A311B /* OBDrawKitTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755AFE2C13489D006A311B /* OBDrawKitTestView.swift */; };
 		F5CC05F12C109AB000D3FDE9 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = F5CC05F02C109AB000D3FDE9 /* SQLite */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +93,7 @@
 		F5755AF82C1347CC006A311B /* EraserTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EraserTool.swift; sourceTree = "<group>"; };
 		F5755AFA2C1347DC006A311B /* LassoTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LassoTool.swift; sourceTree = "<group>"; };
 		F5755AFC2C134825006A311B /* CanvasViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewRepresentable.swift; sourceTree = "<group>"; };
+		F5755AFE2C13489D006A311B /* OBDrawKitTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OBDrawKitTestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 				F55463D62BEC25AC00AF2247 /* Assets.xcassets */,
 				F55463D82BEC25AC00AF2247 /* OneDrawkit.entitlements */,
 				F55463D92BEC25AC00AF2247 /* Preview Content */,
+				F5755AFE2C13489D006A311B /* OBDrawKitTestView.swift */,
 			);
 			path = OneDrawkit;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				F5755AFB2C1347DC006A311B /* LassoTool.swift in Sources */,
 				F55464072BEC268000AF2247 /* Zoomable.swift in Sources */,
 				F5755AF72C1347BC006A311B /* InkingTool.swift in Sources */,
+				F5755AFF2C13489D006A311B /* OBDrawKitTestView.swift in Sources */,
 				F5755AE32C1346D2006A311B /* EraserContext.swift in Sources */,
 				F5755ADD2C134695006A311B /* InnerCanvasView.swift in Sources */,
 				F5755AF02C13477A006A311B /* CGRect+Ext.swift in Sources */,

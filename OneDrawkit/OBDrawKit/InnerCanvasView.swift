@@ -187,10 +187,13 @@ private extension InnerCanvasView {
         guard let touch = touches.first else { return }
         guard checkTouchAvailability(touch: touch) else { return }
 
+      let force = touch.force
+
         inkingContexts.append(.init())
 
         let pathLayer = DrawingLayer()
         inkingContexts.last?.pathLayer = pathLayer
+      inkingContexts.last?.forces?.append(force)
         inkingContexts.last?.pathLayer?.use(tool: tool)
         inkingContexts.last?.points = [touch.location(in: self)]
 
@@ -205,8 +208,10 @@ private extension InnerCanvasView {
         inkingContexts.last?.points += touches.map { $0.location(in: self) }
 
         let predictedPoints = event?.predictedTouches(for: touch)?.map { $0.location(in: self) } ?? []
+      let force = touch.force
 
         inkingContexts.last?.pathLayer?.path = UIBezierPath.interpolate(points: inkingContexts.last!.points + predictedPoints).cgPath
+      inkingContexts.last?.forces?.append(force)
     }
 
     func inkingEnded(touches: Set<UITouch>, event: UIEvent?) {

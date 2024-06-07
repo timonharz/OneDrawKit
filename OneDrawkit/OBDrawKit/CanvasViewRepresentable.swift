@@ -13,7 +13,6 @@ import PencilKit
 struct CanvasViewRepresentable: UIViewRepresentable {
     @Binding var usePencilKitIfPossible: Bool
     @Binding var tool: DrawingTool
-    @Binding var backgroundImageView: UIImageView?
     @Binding var availableTouches: Set<UITouch.TouchType>
 
     class Coordinator: NSObject {
@@ -32,7 +31,6 @@ struct CanvasViewRepresentable: UIViewRepresentable {
         let canvasView = CanvasView(frame: .zero)
         canvasView.usePencilKitIfPossible = usePencilKitIfPossible
         canvasView.tool = tool
-        canvasView.backgroundImageView = backgroundImageView
         canvasView.availableTouches = availableTouches
         return canvasView
     }
@@ -40,7 +38,6 @@ struct CanvasViewRepresentable: UIViewRepresentable {
     func updateUIView(_ uiView: CanvasView, context: Context) {
         uiView.usePencilKitIfPossible = usePencilKitIfPossible
         uiView.tool = tool
-        uiView.backgroundImageView = backgroundImageView
         uiView.availableTouches = availableTouches
     }
 }

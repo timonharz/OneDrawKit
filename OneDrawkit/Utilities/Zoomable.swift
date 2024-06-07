@@ -14,7 +14,7 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
 
     @AppStorage("isDrawing") private var isDrawing: Bool = false
 
-    func makeUIView(context: Context) -> UIScrollView {
+    func makeUIView(context: Context) -> CustomScrollView {
         let scrollView = CustomScrollView()
         scrollView.delegate = context.coordinator
         scrollView.maximumZoomScale = 10.0
@@ -31,7 +31,7 @@ struct ZoomableScrollView<Content: View>: UIViewRepresentable {
         return scrollView
     }
 
-    func updateUIView(_ uiView: UIScrollView, context: Context) {
+    func updateUIView(_ uiView: CustomScrollView, context: Context) {
         print("Is drawing: \(isDrawing)")
         if isDrawing {
             uiView.isScrollEnabled = false

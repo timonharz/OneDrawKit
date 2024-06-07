@@ -12,12 +12,14 @@ final class DrawingLayer: CAShapeLayer {}
 
 final class InkingContext {
     var points: [CGPoint] = []
+    var forces: [CGFloat]?
     var path: UIBezierPath?
     var pathLayer: DrawingLayer?
     var imageLayer: CALayer?
 
     func reset() {
         points = []
+      forces = []
         path = nil
         pathLayer = nil
         imageLayer = nil

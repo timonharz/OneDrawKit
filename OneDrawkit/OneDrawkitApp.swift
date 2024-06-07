@@ -11,7 +11,7 @@ import SwiftUI
 struct OneDrawkitApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            OBDrawKitTestView()
         }
     }
 }
