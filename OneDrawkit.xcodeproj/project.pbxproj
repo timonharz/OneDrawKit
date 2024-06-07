@@ -20,6 +20,23 @@
 		F55464012BEC25E200AF2247 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55464002BEC25E200AF2247 /* Color.swift */; };
 		F55464032BEC25F300AF2247 /* Brush.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55464022BEC25F300AF2247 /* Brush.swift */; };
 		F55464072BEC268000AF2247 /* Zoomable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F55464062BEC268000AF2247 /* Zoomable.swift */; };
+		F5755ADB2C134677006A311B /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755ADA2C134677006A311B /* CanvasView.swift */; };
+		F5755ADD2C134695006A311B /* InnerCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755ADC2C134695006A311B /* InnerCanvasView.swift */; };
+		F5755ADF2C1346AD006A311B /* CanvasImageViewProtocoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755ADE2C1346AD006A311B /* CanvasImageViewProtocoll.swift */; };
+		F5755AE12C1346C2006A311B /* LassoContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755AE02C1346C2006A311B /* LassoContext.swift */; };
+		F5755AE32C1346D2006A311B /* EraserContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755AE22C1346D2006A311B /* EraserContext.swift */; };
+		F5755AE52C1346E2006A311B /* InkingContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755AE42C1346E2006A311B /* InkingContext.swift */; };
+		F5755AE82C13472E006A311B /* DrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755AE72C13472E006A311B /* DrawingTool.swift */; };
+		F5755AEA2C134743006A311B /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755AE92C134743006A311B /* UIView+Ext.swift */; };
+		F5755AEC2C134755006A311B /* UIBezierPath+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755AEB2C134755006A311B /* UIBezierPath+Ext.swift */; };
+		F5755AEE2C134769006A311B /* CAShapeLayer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755AED2C134769006A311B /* CAShapeLayer+Ext.swift */; };
+		F5755AF02C13477A006A311B /* CGRect+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755AEF2C13477A006A311B /* CGRect+Ext.swift */; };
+		F5755AF22C13478C006A311B /* PKInkingTool+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755AF12C13478C006A311B /* PKInkingTool+Ext.swift */; };
+		F5755AF42C13479E006A311B /* PKEraserTool+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755AF32C13479E006A311B /* PKEraserTool+Ext.swift */; };
+		F5755AF72C1347BC006A311B /* InkingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755AF62C1347BC006A311B /* InkingTool.swift */; };
+		F5755AF92C1347CC006A311B /* EraserTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755AF82C1347CC006A311B /* EraserTool.swift */; };
+		F5755AFB2C1347DC006A311B /* LassoTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755AFA2C1347DC006A311B /* LassoTool.swift */; };
+		F5755AFD2C134825006A311B /* CanvasViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5755AFC2C134825006A311B /* CanvasViewRepresentable.swift */; };
 		F5CC05F12C109AB000D3FDE9 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = F5CC05F02C109AB000D3FDE9 /* SQLite */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +75,23 @@
 		F55464002BEC25E200AF2247 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		F55464022BEC25F300AF2247 /* Brush.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brush.swift; sourceTree = "<group>"; };
 		F55464062BEC268000AF2247 /* Zoomable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zoomable.swift; sourceTree = "<group>"; };
+		F5755ADA2C134677006A311B /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+		F5755ADC2C134695006A311B /* InnerCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerCanvasView.swift; sourceTree = "<group>"; };
+		F5755ADE2C1346AD006A311B /* CanvasImageViewProtocoll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasImageViewProtocoll.swift; sourceTree = "<group>"; };
+		F5755AE02C1346C2006A311B /* LassoContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LassoContext.swift; sourceTree = "<group>"; };
+		F5755AE22C1346D2006A311B /* EraserContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EraserContext.swift; sourceTree = "<group>"; };
+		F5755AE42C1346E2006A311B /* InkingContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkingContext.swift; sourceTree = "<group>"; };
+		F5755AE72C13472E006A311B /* DrawingTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingTool.swift; sourceTree = "<group>"; };
+		F5755AE92C134743006A311B /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		F5755AEB2C134755006A311B /* UIBezierPath+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBezierPath+Ext.swift"; sourceTree = "<group>"; };
+		F5755AED2C134769006A311B /* CAShapeLayer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CAShapeLayer+Ext.swift"; sourceTree = "<group>"; };
+		F5755AEF2C13477A006A311B /* CGRect+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Ext.swift"; sourceTree = "<group>"; };
+		F5755AF12C13478C006A311B /* PKInkingTool+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PKInkingTool+Ext.swift"; sourceTree = "<group>"; };
+		F5755AF32C13479E006A311B /* PKEraserTool+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PKEraserTool+Ext.swift"; sourceTree = "<group>"; };
+		F5755AF62C1347BC006A311B /* InkingTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InkingTool.swift; sourceTree = "<group>"; };
+		F5755AF82C1347CC006A311B /* EraserTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EraserTool.swift; sourceTree = "<group>"; };
+		F5755AFA2C1347DC006A311B /* LassoTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LassoTool.swift; sourceTree = "<group>"; };
+		F5755AFC2C134825006A311B /* CanvasViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewRepresentable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +143,7 @@
 		F55463D12BEC25AB00AF2247 /* OneDrawkit */ = {
 			isa = PBXGroup;
 			children = (
+				F5755AD82C13465F006A311B /* OBDrawKit */,
 				F55464052BEC266900AF2247 /* Extensions */,
 				F55464042BEC266300AF2247 /* Utilities */,
 				F55463FD2BEC25BC00AF2247 /* Drawkit */,
@@ -169,8 +204,48 @@
 			isa = PBXGroup;
 			children = (
 				F546572A2C0E12C1009BEC67 /* CGPath+Extension.swift */,
+				F5755AE92C134743006A311B /* UIView+Ext.swift */,
+				F5755AEB2C134755006A311B /* UIBezierPath+Ext.swift */,
+				F5755AED2C134769006A311B /* CAShapeLayer+Ext.swift */,
+				F5755AEF2C13477A006A311B /* CGRect+Ext.swift */,
+				F5755AF12C13478C006A311B /* PKInkingTool+Ext.swift */,
+				F5755AF32C13479E006A311B /* PKEraserTool+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F5755AD82C13465F006A311B /* OBDrawKit */ = {
+			isa = PBXGroup;
+			children = (
+				F5755AF52C1347B1006A311B /* Model */,
+				F5755AD92C13466E006A311B /* Context */,
+				F5755ADA2C134677006A311B /* CanvasView.swift */,
+				F5755ADC2C134695006A311B /* InnerCanvasView.swift */,
+				F5755ADE2C1346AD006A311B /* CanvasImageViewProtocoll.swift */,
+				F5755AFC2C134825006A311B /* CanvasViewRepresentable.swift */,
+			);
+			path = OBDrawKit;
+			sourceTree = "<group>";
+		};
+		F5755AD92C13466E006A311B /* Context */ = {
+			isa = PBXGroup;
+			children = (
+				F5755AE02C1346C2006A311B /* LassoContext.swift */,
+				F5755AE22C1346D2006A311B /* EraserContext.swift */,
+				F5755AE42C1346E2006A311B /* InkingContext.swift */,
+			);
+			path = Context;
+			sourceTree = "<group>";
+		};
+		F5755AF52C1347B1006A311B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F5755AE72C13472E006A311B /* DrawingTool.swift */,
+				F5755AF62C1347BC006A311B /* InkingTool.swift */,
+				F5755AF82C1347CC006A311B /* EraserTool.swift */,
+				F5755AFA2C1347DC006A311B /* LassoTool.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,14 +384,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5755AEA2C134743006A311B /* UIView+Ext.swift in Sources */,
+				F5755ADF2C1346AD006A311B /* CanvasImageViewProtocoll.swift in Sources */,
+				F5755AFB2C1347DC006A311B /* LassoTool.swift in Sources */,
 				F55464072BEC268000AF2247 /* Zoomable.swift in Sources */,
+				F5755AF72C1347BC006A311B /* InkingTool.swift in Sources */,
+				F5755AE32C1346D2006A311B /* EraserContext.swift in Sources */,
+				F5755ADD2C134695006A311B /* InnerCanvasView.swift in Sources */,
+				F5755AF02C13477A006A311B /* CGRect+Ext.swift in Sources */,
 				F55463FF2BEC25D700AF2247 /* SwiftyDraw.swift in Sources */,
+				F5755AE52C1346E2006A311B /* InkingContext.swift in Sources */,
+				F5755AEE2C134769006A311B /* CAShapeLayer+Ext.swift in Sources */,
 				F53DB0122C0E1914008487B9 /* OBStroke.swift in Sources */,
 				F55464012BEC25E200AF2247 /* Color.swift in Sources */,
 				F55464032BEC25F300AF2247 /* Brush.swift in Sources */,
 				F55463D52BEC25AB00AF2247 /* ContentView.swift in Sources */,
+				F5755AE12C1346C2006A311B /* LassoContext.swift in Sources */,
 				F546572B2C0E12C1009BEC67 /* CGPath+Extension.swift in Sources */,
 				F55463D32BEC25AB00AF2247 /* OneDrawkitApp.swift in Sources */,
+				F5755AE82C13472E006A311B /* DrawingTool.swift in Sources */,
+				F5755ADB2C134677006A311B /* CanvasView.swift in Sources */,
+				F5755AF22C13478C006A311B /* PKInkingTool+Ext.swift in Sources */,
+				F5755AEC2C134755006A311B /* UIBezierPath+Ext.swift in Sources */,
+				F5755AFD2C134825006A311B /* CanvasViewRepresentable.swift in Sources */,
+				F5755AF42C13479E006A311B /* PKEraserTool+Ext.swift in Sources */,
+				F5755AF92C1347CC006A311B /* EraserTool.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
