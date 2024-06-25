@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import OneDrawkit
 
 final class OneDrawkitTests: XCTestCase {
 
