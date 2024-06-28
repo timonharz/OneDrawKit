@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreGraphics
+import UIKit
 
 public struct OBStroke {
     public var path: CGMutablePath
