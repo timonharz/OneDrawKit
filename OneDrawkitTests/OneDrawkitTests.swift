@@ -5,6 +5,7 @@
 //  Created by Timon Harz on 08.05.24.
 //
 
+import Foundation
 import XCTest
 @testable import OneDrawkit
 
