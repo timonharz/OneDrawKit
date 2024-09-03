@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import UIKit
 
 struct ContentView: View {
   let drawView = SwiftyDrawView()
