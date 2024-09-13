@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreGraphics
 
 extension CAShapeLayer {
     var movedBoundingBox: CGRect {
