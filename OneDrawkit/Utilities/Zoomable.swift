@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import UIKit
+import CoreGraphics
 
 struct ZoomableScrollView<Content: View>: UIViewRepresentable {
     var content: () -> Content
