@@ -1,1 +1,1 @@
-# OneDrawKit - Drawing library behind the Oneboard app
+# OneDrawKit - Drawing library behind the Oneboard
