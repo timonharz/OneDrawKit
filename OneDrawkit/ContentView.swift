@@ -5,7 +5,6 @@
 //  Created by Timon Harz on 08.05.24.
 //
 
-import Foundation
 import SwiftUI
 import CoreGraphics
 import UIKit
